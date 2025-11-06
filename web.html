@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS from section 1 goes here */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+        }
+        
+        .page-content-wrapper {
+            height: calc(100% - 100px); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .gt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            height: 100px;
+            width: 100%;
+            padding: 5px 20px;
+            background-color: aqua;
+            box-sizing: border-box;
+        }
+        .add {
+            margin: 0;
+        }
+        
+        a {
+            padding: 5px 5px;
+            font-size: 20px;
+        }
+        
+        .center-welcome {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="gt">
+        <h1 class="add">Welcome</h1>
+        <div class="git">
+            <a href="#">signout</a>
+        </div>
+    </div>
+
+    <div class="page-content-wrapper">
+        <h1 class="center-welcome">Welcome</h1>
+    </div>
+</body>
+</html>

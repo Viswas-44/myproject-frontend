@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    body {
+      display: grid;
+      justify-content: center;
+      place-items: center;
+      margin: 0;
+      height: 100vh;
+    }
+    .pig {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-radius: 10px;
+      width: 500px;
+      height: 800px;
+      background-color: white;
+    }
+    h1 {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+    .row, .raw, .rel, .ral {
+      display: flex;
+      margin-top: 10px;
+      gap: 60px;
+    }
+    .col, .cal, .cel, .call {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 4px;
+    }
+    input, select, textarea {
+      margin-bottom: 5px;
+      padding: 5px;
+    }
+    button {
+      display: block;
+      align-items: center;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: blue;
+      color: white;
+      justify-content: center;
+      margin: 30px auto;
+      width: 200px;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background-color: darkblue;
+    }
+    .cat {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-radius: 10px;
+      width: 700px;
+      height: 800px;
+      background-color: lightgrey;
+    }
+    .add {
+      margin-top: 20px;
+    }
+    #mess {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cat">
+    <div class="pig">
+      <form id="registrationForm" enctype="multipart/form-data" autocomplete="off">
+        <h1>Registration Page</h1>
+
+        <div class="row">
+          <div class="col">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required autocomplete="off">
+          </div>
+          <div class="col">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="mobilenumber">Mobile Number</label>
+            <input type="tel" id="mobilenumber" name="mobile" required>
+          </div>
+          <div class="col">
+            <label for="Emailid">Email ID</label>
+            <input type="email" id="Emailid" name="email" required>
+          </div>
+        </div>
+
+        <div class="raw">
+          <div class="cal">
+            <label for="fathername">Father Name</label>
+            <input type="text" id="fathername" name="fathername" required>
+          </div>
+          <div class="cal">
+            <label for="mothername">Mother Name</label>
+            <input type="text" id="mothername" name="mothername" required>
+          </div>
+        </div>
+
+        <div class="rel">
+          <div class="cel">
+            <label for="course">Course</label>
+            <select id="course" name="course">
+              <option value="choose">Course</option>
+              <option value="B.tech">B.tech</option>
+              <option value="M.tech">M.tech</option>
+              <option value="MBA">MBA</option>
+              <option value="B.com">B.com</option>
+            </select>
+          </div>
+          <div class="cel">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+        </div>
+
+        <div class="ral">
+          <div class="call">
+            <label>Gender</label>
+            <input type="radio" name="gender" value="male" id="male" required>
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+          </div>
+          <div class="call">
+           <select id="country" name="Country">
+           <option value="select">Country</option>
+           <option value="india">India</option>
+           <option value="usa">USA</option>
+           <option value="uk">UK</option>
+           <option value="china">China</option>
+           <option value="spain">Spain</option>
+           </select>
+          </div>
+        </div>
+
+        <label for="photo">Photo</label>
+        <input type="file" name="photo" id="photo" accept="image/*" required>
+
+        <div class="add">
+          <label for="address">Address</label>
+          <textarea name="address" id="address" rows="4" cols="50" required></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+        <p id="mess"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 🧹 Clear fields when page loads
+    window.onload = function () {
+      document.getElementById('username').value = "";
+      document.getElementById('password').value = "";
+    };
+
+    document.getElementById('registrationForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const mess = document.getElementById('mess');
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const username = formData.get('username').trim();
+      const password = formData.get('password').trim();
+      const mobile = formData.get('mobile').trim();
+      const email = formData.get('email').trim();
+
+      if (username.length < 6) {
+        mess.textContent = "Username must be at least 6 characters";
+        mess.style.color = "red";
+        return;
+      }
+
+      if (password.length < 6) {
+        mess.textContent = "Password must be at least 6 characters";
+        mess.style.color = "red";
+        return;
+      }
+
+      if (mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
+        mess.textContent = "Mobile number must be exactly 10 digits";
+        mess.style.color = "red";
+        return;
+      }
+
+      if (!email.endsWith("@gmail.com")) {
+        mess.textContent = "Please enter a valid Gmail address";
+        mess.style.color = "red";
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:5000/register", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await res.text();
+        mess.textContent = result;
+        mess.style.color = res.ok ? "green" : "red";
+
+        if (res.ok) {
+          // Clear form after successful submission
+          form.reset();
+        }
+      } catch (err) {
+        mess.textContent = "Error submitting form";
+        mess.style.color = "red";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

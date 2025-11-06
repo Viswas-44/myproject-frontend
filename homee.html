@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Home page</title>
+        <style>
+            .home{
+            display: flex;
+            background-color: lightgray;
+         }
+         .lin{
+            display: flex;
+            margin-left: 1000px;
+            justify-content: space-between;
+            gap: 30px;  
+            padding: 10px;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+         }
+         .lin a{
+            display: inline-block;
+            margin: 10px 0;
+            cursor: pointer;
+
+         }
+         #p1{
+            font-size: 50px;
+            font-weight: bold;
+           margin: 0;
+
+         }
+
+         a{
+            font-weight: bold;
+            font-size: 15px;
+         }
+           h1{
+            font-weight: bolder;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 25px;
+           }
+           .ff{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color:red;
+            height: 600px;
+            width: 500px;
+            margin: 80px auto;
+           }
+           #p2{
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            margin-top: 50px;
+           }
+           .content{
+            text-align: center;
+            margin-bottom: 50px;
+           }
+           button{
+            border-radius: 10px;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-weight: bold;
+            cursor: pointer;
+           }
+           .vi{
+            margin-top: 40px;
+            font-size: 30px
+           }
+        </style>
+    </head>
+    <div class="home">
+        <h1>My Web page</h1>
+        <div class="lin">
+            <a href="#" onclick="window.location.href='registration.html'">signup</a>
+            <a href="#" onclick="window.location.href='loginn.html'">Login</a>
+            <a href="#" onclick="window.location.href='aboutus.html'">About us</a>
+            <a href="#" onclick="window.location.href='contactus.html'">Contactus</a>
+        </div>
+    </div>
+    <div class="ff">
+        <div class="content">
+        <h2 id="p1">Welcome to<br>my web page!</h2>
+        <h3 id="p2">A simple web application<br>for managing your tasks and projects</h3>
+        <button type="submit" onclick="window.location.href='registration.html'"> Get started</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="submit" onclick="window.location.href='loginn.html'">Login</button>
+        <div class="vi">
+        <ul>
+        <li>&#128274; Secure login system</li> 
+        <li>&#128221; Easy signup process</li> 
+        <li>&#128273; Password recovery</li> 
+        </ul>
+        </div>
+        </div>
+    </div>
+</html>

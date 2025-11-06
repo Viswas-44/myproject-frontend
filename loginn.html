@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login page</title>
+  <style>
+    body {
+      display: grid;
+      place-items: center;
+      margin: 0;
+      height: 100vh;
+      background-color: lightgray;
+      perspective: 1000px;
+    }
+
+    .love {
+      display: grid;
+      justify-content: center;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid black;
+      padding: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      height: auto;
+      transition: transform 0.5s ease;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    label, input {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 3px;
+      background-color: blue;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: darkblue;
+      transform: scale(1.05);
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #message {
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="love">
+    <form id="loginform" autocomplete="off">
+      <h1>LOGIN</h1>
+      <label for="username">Username</label>
+      <input type="text" id="username" required autocomplete="off">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required autocomplete="new-password">
+
+      <button type="submit">LOGIN</button>
+
+      <a href="forgot.html">Forgot password?</a>
+      <a href="registration.html">Signup</a>
+
+      <div id="message"></div>
+    </form>
+  </div>
+
+  <script>
+    // 🧹 Clear any saved values when page loads
+    window.onload = function () {
+      document.getElementById('username').value = "";
+      document.getElementById('password').value = "";
+    };
+
+    document.getElementById('loginform').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const user = document.getElementById('username');
+      const pass = document.getElementById('password');
+      const message = document.getElementById('message');
+
+      const username = user.value.trim();
+      const password = pass.value;
+
+      if (username.length < 1) {
+        message.textContent = "Please enter username";
+        message.style.color = "red";
+        user.focus();
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:5000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const result = await res.text();
+        if (res.status === 200) {
+          message.textContent = result;
+          message.style.color = "green";
+          setTimeout(() => {
+            window.location.href = "web.html";
+          }, 1500);
+        } else {
+          message.textContent = result;
+          message.style.color = "red";
+        }
+      } catch (err) {
+        message.textContent = "Error connecting to server";
+        message.style.color = "red";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
